@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="center">
+        <h1 className="text-2xl font-bold text-black">
+          Indivara Group Bank
+        </h1>
+        <a href="#">More Info</a>
+        <a href="#">Register</a>
+        <a href="#">Login</a>
       </header>
+      <main className="center">
+        <p>Information</p>
+        <p>Feature</p>
+        <a href="#">Register</a>
+      </main>
+      <footer className="center">
+        <p>© Hak Cipta PT Indivara Group Bank</p>
+      </footer>
     </div>
   );
 }
