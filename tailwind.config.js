@@ -7,12 +7,15 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        'caribbeangreen': '#34de9d',
-        'vaporwavepool': '#9bf2c0',
-        'teagreen': '#d3f5c8',
+        'martinique': '#272343',
+        'milkyway': '#E3F6F5',
+        'jaggedice': '#BAE8E8',
         'fauxbeige': '#f6f6d6',
         'black': '#000000',
         'white': '#ffffff',
+      },
+      backgroundImage: {
+        'hero-test': "url('https://imgur.com/aBc27BW.jpg')",
       },
     },
   },

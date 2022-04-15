@@ -2,18 +2,26 @@
 
 function App() {
   return (
-     <div className="App m-auto bg-white">
-      <header className="mx-auto p-6 flex flex-row  bg-fauxbeige">
+     <div className="App m-auto bg-gradient-to-r from-white to-milkyway">
+
+      <header className="mx-auto p-6 flex flex-row">
          <div className="container flex flex-row mx-auto"> 
-          <div className="flex flex-row basis-1/2 text-xl font-bold text-black">
-            Bank Sad
+          <div className="">
+            <img src="img/logo_size-removed.png" className=""/>
           </div>
-          <div className="flex flex-row basis-1/2 justify-end">
-            <a className="flex flex-row" href="#">Register</a>
-            <a className="flex flex-row pl-2" href="#">Login</a>
+          <div className="flex flex-row basis-1/2 items-center justify-end mx-auto">
+            <button className="p-1 border-2 h-10 rounded-lg bg-martinique border-martinique text-white hover:opacity-80 transition duration-300 ease-in-out" href="#">Register</button>
+            <button className="p-1 ml-2 border-2 h-10 rounded-lg bg-martinique border-martinique  text-white hover:opacity-80 transition duration-300 ease-in-out" href="#">Login</button>
           </div>
          </div> 
       </header>
+
+      <div className="Hero">
+        <div className="flex w-full mt-10">
+          <img src="img\warga.jpeg" alt="test" className="max-w-full mx-auto"/>
+        </div>
+      </div>
+
       <main className="container mx-auto my-24">
         <div className="mb-4">
           <div className="mb-4 font-bold text-xl">
@@ -54,7 +62,8 @@ function App() {
           </p>
         </div>
       </main>
-      <footer className="mx-auto p-6 bg-fauxbeige">
+
+      <footer className="mx-auto p-6">
         <div className="container flex flex-row mx-auto">
           <p>© Hak Cipta PT Bank Sad</p>
         </div>
