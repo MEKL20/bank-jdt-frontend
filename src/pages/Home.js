@@ -1,4 +1,4 @@
-
+import React from "react";
 
 function Home() {
     return (
@@ -8,11 +8,24 @@ function Home() {
         <header className="mx-auto p-6 flex flex-row">
            <div className="container flex flex-row mx-auto"> 
             <div className="basis-1/2">
-              <img src="img/logo_size-removed.png" alt="" className="scale-105 -translate-x-28"/>
+              <img 
+                src="img/logo_size-removed.png" alt="logo" 
+                className="scale-105 -translate-x-28" href="/"
+              />
             </div>
             <div className="flex flex-row basis-1/2 items-center justify-end mx-auto">
-              <button className="py-1 px-2 border-2 h-10 rounded bg-martinique text-white font-bold hover:opacity-80 transition duration-300 ease-in-out" href="#">Register</button>
-              <button className="py-1 px-2 mx-2 border-2 h-10 rounded bg-martinique text-white font-bold hover:opacity-80 transition duration-300 ease-in-out" href="#">Login</button>
+              <button 
+                className="py-1 px-2 border-2 h-10 rounded bg-martinique text-white font-bold 
+                hover:opacity-80 transition duration-300 ease-in-out" href="/register"
+              >
+                Register
+              </button>
+              <button 
+                className="py-1 px-2 mx-2 border-2 h-10 rounded bg-martinique text-white 
+                font-bold hover:opacity-80 transition duration-300 ease-in-out" href="/login"
+              >
+                Login
+              </button>
             </div>
            </div> 
         </header>
@@ -59,7 +72,7 @@ function Home() {
             </p>
           </div>
           <div className="mb-4">
-            <a className="mb-4 font-bold text-xl" href="/">
+            <a className="mb-4 font-bold text-xl" href="/register">
               Register
             </a>
             <p className="">
