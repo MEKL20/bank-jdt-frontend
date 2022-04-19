@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Deposito from "./pages/Deposito";
 import Transaction from "./pages/Transaction";
+import ForgetPassword from "./pages/ForgetPassword";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/deposito" element={<Deposito />}/>
         <Route path="/transaction" element={<Transaction />}/>
+        <Route path="/forgetpassword" element={<ForgetPassword />}/>
       </Routes>
     </BrowserRouter>
 

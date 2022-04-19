@@ -10,7 +10,7 @@ function Home() {
             <div className="basis-1/2">
               <img 
                 src="img/logo_size-removed.png" alt="logo" 
-                className="scale-105 -translate-x-28" href="/"
+                className="scale-105 -translate-x-28"
               />
             </div>
             <div className="flex flex-row basis-1/2 items-center justify-end mx-auto">
@@ -18,13 +18,13 @@ function Home() {
                 className="py-1 px-2 border-2 h-10 rounded bg-martinique text-white font-bold 
                 hover:opacity-80 transition duration-300 ease-in-out" href="/register"
               >
-                Register
+                <a href="/register">Register</a>
               </button>
               <button 
                 className="py-1 px-2 mx-2 border-2 h-10 rounded bg-martinique text-white 
                 font-bold hover:opacity-80 transition duration-300 ease-in-out" href="/login"
               >
-                Login
+                <a href="/login">Login</a>
               </button>
             </div>
            </div> 
@@ -85,7 +85,7 @@ function Home() {
         {/* Start footer */}
         <footer className="mx-auto p-6">
           <div className="container flex flex-row mx-auto">
-            <p>© Hak Cipta PT Bank Sad</p>
+            <p>© Hak Cipta PT Bank Root</p>
           </div>
         </footer>
         {/* End footer */}

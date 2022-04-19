@@ -1,6 +1,6 @@
 import React from "react";
 
-function Login() {
+function ForgetPassword() {
     return (
        <div className="App m-auto bg-gradient-to-r from-white to-milkyway">
         
@@ -28,32 +28,32 @@ function Login() {
         </header>
         {/* End header */}
 
-        {/* Start Login */}
+        {/* Start Forget Password */}
         <div className="flex flex-wrap justify-center my-36">
           <div className="w-full max-w-sm">
               <form action="" className="shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4">
                   <div className="mb-5">
                       <label 
-                          htmlFor="username" className="block text-black text-sm 
+                          htmlFor="newPassword" className="block text-black text-sm 
                           font-bold mb-2"
                       >
-                       Username
+                       New Password
                       </label>
                       <input 
-                          type="text" className="shadow appearance-none border rounded w-full 
+                          type="password" className="shadow appearance-none border rounded w-full 
                           py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                          focus:shadow-outline" placeholder="Username"
+                          focus:shadow-outline" placeholder="New Password"
                       />
                       <label 
-                          htmlFor="password" className="block text-black text-sm 
+                          htmlFor="confirmNewPassword" className="block text-black text-sm 
                           font-bold mb-2"
                       >
-                       Password
+                       Confirm New Password
                       </label>
                       <input 
                           type="password" className="shadow appearance-none border rounded 
                           w-full py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                          focus:shadow-outline" placeholder="Password"
+                          focus:shadow-outline" placeholder="Confirm New Password"
                       />
                   </div>
                   <div className="flex items-center justify-between">
@@ -62,20 +62,13 @@ function Login() {
                           ease-in-out text-white font-bold py-2 px-4 rounded 
                           focus:outline-none focus:shadow-outline"
                       >
-                        <a href="/dashboard">Login</a>
+                        <a href="/login">Confirm</a>
                       </button>
-                      <a
-                          className="inline-block align-baseline font-bold 
-                          text-sm text-martinique hover:opacity-80"
-                          href="/forgetpassword"
-                      >
-                        Forgot Password?
-                      </a>
                   </div>
               </form>
           </div>
         </div>
-        {/* End Login */}
+        {/* End Forget Password */}
 
         {/* Start footer */}
         <footer className="mx-auto p-6">
@@ -88,5 +81,5 @@ function Login() {
     );
   }
   
-  export default Login;
+  export default ForgetPassword;
   

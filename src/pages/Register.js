@@ -15,13 +15,13 @@ function Register() {
                 className="py-1 px-2 border-2 h-10 rounded bg-martinique text-white font-bold 
                 hover:opacity-80 transition duration-300 ease-in-out" href="#"
               >
-                Login
+                <a href="/login">Login</a>
               </button>
               <button 
                 className="py-1 px-2 mx-2 border-2 h-10 rounded bg-martinique text-white 
                 font-bold hover:opacity-80 transition duration-300 ease-in-out" href="#"
               >
-                Home
+                <a href="/">Home</a>
               </button>
             </div>
            </div> 
@@ -29,7 +29,7 @@ function Register() {
         {/* End header */}
 
         {/* Start register */}
-        <div className="flex flex-wrap justify-center mt-20">
+        <div className="flex flex-wrap justify-center my-10">
           <div className="w-full max-w-sm">
               <form action="" className="shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4">
                   <div className="mb-5">
@@ -135,7 +135,7 @@ function Register() {
                           ease-in-out text-white font-bold py-2 px-4 rounded 
                           focus:outline-none focus:shadow-outline"
                       >
-                        Register
+                        <a href="/login">Register</a>
                       </button>
                       <p
                         className="inline-block align-baseline font-bold 
@@ -155,7 +155,7 @@ function Register() {
         {/* Start footer */}
         <footer className="mx-auto p-6">
           <div className="container flex flex-row mx-auto">
-            <p>© Hak Cipta PT Bank Sad</p>
+            <p>© Hak Cipta PT Bank Root</p>
           </div>
         </footer>
         {/* End footer */}
