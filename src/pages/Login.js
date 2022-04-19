@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function Login(){
 
@@ -23,10 +24,21 @@ function Login(){
                 console.log(res)
                 localStorage.setItem("token", res.data.Token)
                 localStorage.setItem("username", res.data.Username)
+                Swal.fire({
+                    title: 'Login Success',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
                 navigate('/dashboard')
             })
             .catch(err => {
-                console.log(err.data)
+                console.log(err.response)
+                Swal.fire({
+                    title: 'Error!',
+                    text: err.response.data,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             })
 
     }

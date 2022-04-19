@@ -1,6 +1,12 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 
 function Dashboard() {
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.clear()
+        navigate('/login')
+    }
     return (
        <div className="App m-auto bg-gradient-to-r from-white to-milkyway">
         
@@ -13,9 +19,10 @@ function Dashboard() {
             <div className="flex flex-row basis-1/2 items-center justify-end mx-auto">
               <button 
                 className="py-1 px-2 mx-2 border-2 h-10 rounded bg-martinique text-white 
-                font-bold hover:opacity-80 transition duration-300 ease-in-out" href="#"
+                font-bold hover:opacity-80 transition duration-300 ease-in-out"
+                onClick={handleLogout}
               >
-                <a href="/">Logout</a>
+              Logout
               </button>
             </div>
            </div> 
