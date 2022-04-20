@@ -17,7 +17,7 @@ function Login(){
             password
         }
 
-        axios.post('https://bank-jdt-api.herokuapp.com/Customer/login', null, {
+        axios.post('https://bank-root-api.herokuapp.com/Customer/login', null, {
             params: data
         })
             .then(res => {
