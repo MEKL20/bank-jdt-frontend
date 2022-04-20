@@ -1,4 +1,4 @@
-import {useState} from "react";
+// import {useState} from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom';
@@ -7,30 +7,22 @@ import * as Yup from 'yup';
 
 function Register() {
     const navigate=useNavigate()
-    const [name, setName] = useState()
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
-    const [email, setEmail] = useState()
-    const [identityCard, setIdentityCard] = useState()
-    const [datebirth, setDateBirth] = useState()
-    const [address, setAddress] = useState()
-    const [phone, setPhone] = useState()
 
-    const handleSubmit = e => {
-        e.preventDefault();
-
+    const register = (values) => {
         const data = {
-            name,
-            username,
-            password,
-            email,
-            identityCard,
-            datebirth,
-            address,
-            phone
+            name: values.name,
+            username: values.username,
+            password: values.password,
+            email: values.email,
+            identityCard: values.identityCard,
+            datebirth: values.datebirth,
+            address: values.address,
+            phone: values.phone
         }
 
-        axios.post('https://bank-jdt-api.herokuapp.com/Customer/add', data)
+        formik.setSubmitting(false)
+
+        axios.post('https://bank-root-api.herokuapp.com/Customer/add', data)
             .then(res => {
                 console.log(res)
                 Swal.fire({
@@ -100,7 +92,9 @@ function Register() {
       }),
 
       //handle submission
-      // onSubmit: doRegister
+      onSubmit: (values) => {
+        register(values);
+      }
     });
 
     return (
@@ -133,7 +127,7 @@ function Register() {
         {/* Start register */}
         <div className="flex flex-wrap justify-center my-10">
           <div className="w-full max-w-sm">
-              <form action="" className="shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+              <form action="" className="shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4" onSubmit={formik.handleSubmit}>
                   <div className="mb-5">
                       <label 
                         htmlFor="name" className="block text-black text-sm 
@@ -144,7 +138,7 @@ function Register() {
                       <input 
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="Name" onChange={e => setName(e.target.value)}
+                        focus:shadow-outline" placeholder="Name" name="name"
                         {...formik.getFieldProps('name')}
                     />
                     {
@@ -165,7 +159,7 @@ function Register() {
                       <input 
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="IdentityCard" onChange={e => setIdentityCard(e.target.value)}
+                        focus:shadow-outline" placeholder="IdentityCard" name="identityCard"
                         {...formik.getFieldProps('identityCard')}
                     />
                     {
@@ -186,7 +180,7 @@ function Register() {
                       <input 
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="Username" onChange={e => setUsername(e.target.value)}
+                        focus:shadow-outline" placeholder="Username" name="username"
                         {...formik.getFieldProps('username')}
                     />
                     {
@@ -207,7 +201,7 @@ function Register() {
                       <input 
                         type="password" className="shadow appearance-none border rounded 
                         w-full py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="Password" onChange={e => setPassword(e.target.value)}
+                        focus:shadow-outline" placeholder="Password" name="password"
                         {...formik.getFieldProps('password')}
                     />
                     {
@@ -228,7 +222,7 @@ function Register() {
                       <input 
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="Email" onChange={e => setEmail(e.target.value)}
+                        focus:shadow-outline" placeholder="Email" name="email"
                         {...formik.getFieldProps('email')}
                     />
                     {
@@ -249,7 +243,7 @@ function Register() {
                       <input 
                         type="date" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="dd/mm/yy" onChange={e => setDateBirth(e.target.value)}
+                        focus:shadow-outline" placeholder="dd/mm/yy" name="datebirth"
                         {...formik.getFieldProps('datebirth')}
                     />
                     {
@@ -270,7 +264,7 @@ function Register() {
                       <input 
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="Address" onChange={e => setAddress(e.target.value)}
+                        focus:shadow-outline" placeholder="Address" name="address"
                         {...formik.getFieldProps('address')}
                     />
                     {
@@ -291,7 +285,7 @@ function Register() {
                       <input 
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                        focus:shadow-outline" placeholder="Phone" onChange={e => setPhone(e.target.value)}
+                        focus:shadow-outline" placeholder="Phone" name="phone"
                         {...formik.getFieldProps('phone')}
                     />
                     {
@@ -309,6 +303,7 @@ function Register() {
                           className="bg-martinique hover:opacity-80 transition duration-300 
                           ease-in-out text-white font-bold py-2 px-4 rounded 
                           focus:outline-none focus:shadow-outline"
+                          disabled={formik.isSubmitting}
                       >
                       Register
                       </button>

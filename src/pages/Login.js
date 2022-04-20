@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+// import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,54 +8,52 @@ import * as Yup from 'yup';
 function Login(){
 
     const navigate=useNavigate()
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
+    // const [username, setUsername] = useState()
+    // const [password, setPassword] = useState()
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    // const handleSubmit = e => {
+        // e.preventDefault();
 
+    const login = (values) => {
         const data = {
-            username,
-            password
+            username: values.username,
+            password: values.password
         }
 
-        axios.post('https://bank-root-api.herokuapp.com/Customer/login', null, {
+        formik.setSubmitting(false)
+
+        axios.post('https://bank-root-api.herokuapp.com/Customer/login', null,{
             params: data
         })
-            .then(res => {
-                console.log(res)
-                localStorage.setItem("token", res.data.Token)
-                localStorage.setItem("username", res.data.Username)
-                Swal.fire({
-                    title: 'Login Success',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                })
-                navigate('/dashboard')
+        .then(res => {
+            console.log(res)
+            localStorage.setItem("token", res.data.Token)
+            localStorage.setItem("username", res.data.Username)
+            Swal.fire({
+                title: 'Login Success',
+                icon: 'success',
+                confirmButtonText: 'Ok'
             })
-            .catch(err => {
-                console.log(err.response)
-                Swal.fire({
-                    title: 'Error!',
-                    text: err.response.data,
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                })
+            navigate('/dashboard')
+        })
+        .catch(err => {
+            console.log(err.response)
+            Swal.fire({
+                title: 'Error!',
+                text: err.response.data,
+                icon: 'error',
+                confirmButtonText: 'Ok'
             })
-
+        })
     }
+
+    // }
 
     const formik = useFormik({
         //initial values
         initialValues: {
-          name:'',
           username:'',
           password:'',
-          email:'',
-          identityCard:'',
-          datebirth:'',
-          address:'',
-          phone:''
         },
   
         //validation schema
@@ -72,7 +70,9 @@ function Login(){
         }),
 
         //handle submission
-        // onSubmit: doRegister
+        onSubmit: (values) => {
+            login(values);
+          }
     });
 
     return (
@@ -106,7 +106,8 @@ function Login(){
             <div className="flex flex-wrap justify-center my-36">
                 <div className="w-full max-w-sm">
                     <form action="" className="shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4"
-                          onSubmit={handleSubmit}>
+                          onSubmit={formik.handleSubmit}
+                        >
                         <div className="mb-5">
                             <label
                                 htmlFor="username" className="block text-black text-sm
@@ -117,7 +118,8 @@ function Login(){
                             <input
                                 type="text" className="shadow appearance-none border rounded w-full
                             py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                            focus:shadow-outline" placeholder="Username" onChange={e => setUsername(e.target.value)}
+                            focus:shadow-outline" placeholder="Username" name="username"
+                            // onChange={e => setUsername(e.target.value)}
                             {...formik.getFieldProps('username')}
                             />
                             {
@@ -137,7 +139,8 @@ function Login(){
                             <input
                                 type="password" className="shadow appearance-none border rounded
                             w-full py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
-                            focus:shadow-outline" placeholder="Password" onChange={e => setPassword(e.target.value)}
+                            focus:shadow-outline" placeholder="Password" name="password"
+                            // onChange={e => setPassword(e.target.value)}
                             {...formik.getFieldProps('password')}
                             />
                             {
@@ -153,6 +156,7 @@ function Login(){
                             <button type="submit" className="bg-martinique hover:opacity-80 transition duration-300
                       ease-in-out text-white font-bold py-2 px-4 rounded 
                       focus:outline-none focus:shadow-outline"
+                      disabled={formik.isSubmitting}
                             >
                                 Login
                             </button>
