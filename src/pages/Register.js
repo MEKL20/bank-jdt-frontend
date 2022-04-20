@@ -1,7 +1,9 @@
 import {useState} from "react";
 import axios from "axios";
-import Swal from 'sweetalert2'
-import {useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2';
+import {useNavigate} from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function Register() {
     const navigate=useNavigate()
@@ -50,6 +52,57 @@ function Register() {
 
     }
 
+    // const doRegister = (values) => {
+    //   console.log('form values', values);
+    //   setTimeout(() => {
+    //     formik.setSubmitting(false);
+    //     formik.resetForm();
+    //   }, 2000);
+    // }
+
+    const formik = useFormik({
+      //initial values
+      initialValues: {
+        name:'',
+        username:'',
+        password:'',
+        email:'',
+        identityCard:'',
+        datebirth:'',
+        address:'',
+        phone:''
+      },
+
+      //validation schema
+      validationSchema: Yup.object({
+        name: Yup.string()
+        .required(),
+        username: Yup.string()
+        .required(),
+        password: Yup.string()
+        .required()
+        .min(8, 'Should more than 8 characters')
+        .matches(/[a-z]/g, 'Should contain at least 1 lowercase')
+        .matches(/[A-Z]/g, 'Should contain at least 1 uppercase')
+        .matches(/[0-9]/g, 'Should contain at least 1 number')
+        .matches(/^\S*$/, 'Should not contain spaces'),
+        email: Yup.string()
+        .required()
+        .email('Invalid email format'),
+        identityCard: Yup.string()
+        .required(),
+        datebirth: Yup.string()
+        .required(),
+        address: Yup.string()
+        .required(),
+        phone: Yup.string()
+        .required()
+      }),
+
+      //handle submission
+      // onSubmit: doRegister
+    });
+
     return (
        <div className="App m-auto bg-gradient-to-r from-white to-milkyway">
         
@@ -92,7 +145,16 @@ function Register() {
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="Name" onChange={e => setName(e.target.value)}
-                      />
+                        {...formik.getFieldProps('name')}
+                    />
+                    {
+                      formik.touched.name && formik.errors.name && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.name}
+                    </div>
+                    }
 
                       <label 
                         htmlFor="identityCard" className="block text-black text-sm 
@@ -104,7 +166,16 @@ function Register() {
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="IdentityCard" onChange={e => setIdentityCard(e.target.value)}
-                      />
+                        {...formik.getFieldProps('identityCard')}
+                    />
+                    {
+                      formik.touched.identityCard && formik.errors.identityCard && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.identityCard}
+                    </div>
+                    }
   
                       <label 
                         htmlFor="username" className="block text-black text-sm 
@@ -116,7 +187,16 @@ function Register() {
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="Username" onChange={e => setUsername(e.target.value)}
-                      />
+                        {...formik.getFieldProps('username')}
+                    />
+                    {
+                      formik.touched.username && formik.errors.username && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.username}
+                    </div>
+                    }
   
                       <label 
                         htmlFor="password" className="block text-black text-sm 
@@ -128,7 +208,16 @@ function Register() {
                         type="password" className="shadow appearance-none border rounded 
                         w-full py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="Password" onChange={e => setPassword(e.target.value)}
-                      />
+                        {...formik.getFieldProps('password')}
+                    />
+                    {
+                      formik.touched.password && formik.errors.password && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.password}
+                    </div>
+                    }
   
                       <label 
                         htmlFor="email" className="block text-black text-sm 
@@ -140,7 +229,16 @@ function Register() {
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="Email" onChange={e => setEmail(e.target.value)}
-                      />
+                        {...formik.getFieldProps('email')}
+                    />
+                    {
+                      formik.touched.email && formik.errors.email && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.email}
+                    </div>
+                    }
   
                       <label 
                         htmlFor="datebirth" className="block text-black text-sm 
@@ -152,7 +250,16 @@ function Register() {
                         type="date" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="dd/mm/yy" onChange={e => setDateBirth(e.target.value)}
-                      />
+                        {...formik.getFieldProps('datebirth')}
+                    />
+                    {
+                      formik.touched.datebirth && formik.errors.datebirth && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.datebirth}
+                    </div>
+                    }
   
                       <label 
                         htmlFor="address" className="block text-black text-sm 
@@ -164,7 +271,16 @@ function Register() {
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="Address" onChange={e => setAddress(e.target.value)}
-                      />
+                        {...formik.getFieldProps('address')}
+                    />
+                    {
+                      formik.touched.address && formik.errors.address && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.address}
+                    </div>
+                    }
   
                       <label 
                         htmlFor="phone" className="block text-black text-sm 
@@ -176,7 +292,16 @@ function Register() {
                         type="text" className="shadow appearance-none border rounded w-full 
                         py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                         focus:shadow-outline" placeholder="Phone" onChange={e => setPhone(e.target.value)}
-                      />
+                        {...formik.getFieldProps('phone')}
+                    />
+                    {
+                      formik.touched.phone && formik.errors.phone && 
+                    <div 
+                      className="error text-red-500 mb-1"
+                    >
+                      {formik.errors.phone}
+                    </div>
+                    }
                   </div>
                   <div className="flex items-center justify-between">
                       <button 
