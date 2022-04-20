@@ -1,12 +1,125 @@
-import React from "react";
+import {useState, useEffect} from "react";
+import axios from "axios";
+import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom'
 
 function Transaction() {
+    const [customer, setCustomer] = useState([]);
+    const [balance, setBalance] = useState();
+    const [destination, setDestination] = useState();
     const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.clear()
         navigate('/login')
     }
+
+    const fetchCustomer = () => {
+      axios.get('https://bank-root-api.herokuapp.com/Customer/get/' + localStorage.getItem("username"), {
+          headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+          }
+      })
+          .then((res) => {
+              console.log(res);
+              setCustomer(res.data);
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+    };
+
+    const topup = (e) => {
+      e.preventDefault()
+      const data = {
+          balance
+      }
+      axios.post(`https://bank-root-api.herokuapp.com/saving/${localStorage.getItem("username")}/topup`, data, {
+          headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+          }
+      })
+      .then((res) => {
+          Swal.fire({
+              title: 'TopUp Success',
+              icon: 'success',
+              text:res.data.message,
+              confirmButtonText: 'Ok'
+          }).then(() => window.location.reload())
+      })
+      .catch(err => {
+          console.log(err.response)
+          Swal.fire({
+              title: 'Error!',
+              text: err.response.data.message,
+              icon: 'error',
+              confirmButtonText: 'Ok'
+          })
+      })
+    }
+
+    const transfer = (e) => {
+      e.preventDefault()
+      const data = {
+          balance,
+          accountSaving: destination
+      }
+      axios.post(`https://bank-root-api.herokuapp.com/saving/${localStorage.getItem("username")}/transfer`, data, {
+          headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+          }
+      })
+      .then((res) => {
+          Swal.fire({
+              title: 'Transfer Success',
+              text:res.data.message,
+              icon: 'success',
+              confirmButtonText: 'Ok'
+          }).then(() => window.location.reload())
+      })
+      .catch(err => {
+          console.log(err.response)
+          Swal.fire({
+              title: 'Error!',
+              text: err.response.data.message,
+              icon: 'error',
+              confirmButtonText: 'Ok'
+          })
+      })
+    }
+
+    const withdraw = (e) => {
+      e.preventDefault()
+      const data = {
+          balance
+      }
+      axios.post(`https://bank-root-api.herokuapp.com/saving/${localStorage.getItem("username")}/withdraw`, data, {
+          headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+          }
+      })
+      .then((res) => {
+          Swal.fire({
+              title: 'Withdraw Success',
+              text:res.data.message,
+              icon: 'success',
+              confirmButtonText: 'Ok'
+          }).then(() => window.location.reload())
+      })
+      .catch(err => {
+          console.log(err.response)
+          Swal.fire({
+              title: 'Error!',
+              text: err.response.data.message,
+              icon: 'error',
+              confirmButtonText: 'Ok'
+          })
+      })
+    }
+
+    useEffect(() => {
+      fetchCustomer();
+    }, []);
+
     return (
        <div className="App m-auto bg-gradient-to-r from-white to-milkyway">
         
@@ -31,12 +144,8 @@ function Transaction() {
 
         <div className="container flex mx-auto my-32">
           <div className="flex flex-col justify-center basis-1/3 border">
-            <img 
-              src="img\person.png" alt="person" 
-              className="max-w-full mx-auto scale-90"
-            />
             <h1 className="text-center">
-              Simon Hutajulu
+              {customer.name}
             </h1>
 
             <h1 className="mt-8 mb-2 ml-10 font-bold">
@@ -64,16 +173,26 @@ function Transaction() {
               </h1>
             </div>
             <div className="container border m-1">
-                balance
+                TopUp <br/>
+                <form onSubmit={topup}>
+                  <input type="number" placeholder="Amount" name="balance" onChange={e => setBalance(e.target.value)}/><br/>
+                  <button type="submit">Submit</button>
+                </form>
             </div>
             <div className="container border m-1">
-                debit
+                transfer<br/>
+                <form onSubmit={transfer}>
+                  <input type="number" placeholder="Account Destination" name="destination" onChange={e => setDestination(e.target.value)}/><br/>
+                  <input type="number" placeholder="Amount" name="balance" onChange={e => setBalance(e.target.value)}/><br/>
+                  <button type="submit">Submit</button>
+                </form>
             </div>
             <div className="container border m-1">
-                transfer
-            </div>
-            <div className="container border m-1">
-                withdraw
+                withdraw <br/>
+                <form onSubmit={withdraw}>
+                  <input type="number" placeholder="Amount" name="balance" onChange={e => setBalance(e.target.value)}/><br/>
+                  <button type="submit">Submit</button>
+                </form>
             </div>
           </div>
         </div>
