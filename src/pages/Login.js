@@ -2,8 +2,8 @@
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import {useFormik} from 'formik'
+import * as Yup from 'yup'
 
 function Login(){
 
@@ -122,14 +122,6 @@ function Login(){
                             // onChange={e => setUsername(e.target.value)}
                             {...formik.getFieldProps('username')}
                             />
-                            {
-                            formik.touched.username && formik.errors.username && 
-                            <div 
-                            className="error text-red-500 mb-1"
-                            >
-                            {formik.errors.username}
-                            </div>
-                            }
                             <label
                                 htmlFor="password" className="block text-black text-sm
                       font-bold mb-2"
@@ -143,14 +135,6 @@ function Login(){
                             // onChange={e => setPassword(e.target.value)}
                             {...formik.getFieldProps('password')}
                             />
-                            {
-                            formik.touched.password && formik.errors.password && 
-                            <div 
-                            className="error text-red-500 mb-1"
-                            >
-                            {formik.errors.password}
-                            </div>
-                            }
                         </div>
                         <div className="flex items-center justify-between">
                             <button type="submit" className="bg-martinique hover:opacity-80 transition duration-300

@@ -2,8 +2,8 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import {useFormik} from 'formik'
+import * as Yup from 'yup'
 
 function Register() {
     const navigate=useNavigate()
