@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
 function Login(){
 
@@ -44,36 +42,6 @@ function Login(){
             })
 
     }
-
-    const formik = useFormik({
-        //initial values
-        initialValues: {
-          name:'',
-          username:'',
-          password:'',
-          email:'',
-          identityCard:'',
-          datebirth:'',
-          address:'',
-          phone:''
-        },
-  
-        //validation schema
-        validationSchema: Yup.object({
-          username: Yup.string()
-          .required(),
-          password: Yup.string()
-          .required()
-          .min(8, 'Should more than 8 characters')
-          .matches(/[a-z]/g, 'Should contain at least 1 lowercase')
-          .matches(/[A-Z]/g, 'Should contain at least 1 uppercase')
-          .matches(/[0-9]/g, 'Should contain at least 1 number')
-          .matches(/^\S*$/, 'Should not contain spaces')
-        }),
-
-        //handle submission
-        // onSubmit: doRegister
-    });
 
     return (
         <div className="App m-auto bg-gradient-to-r from-white to-milkyway">
@@ -118,16 +86,7 @@ function Login(){
                                 type="text" className="shadow appearance-none border rounded w-full
                             py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                             focus:shadow-outline" placeholder="Username" onChange={e => setUsername(e.target.value)}
-                            {...formik.getFieldProps('username')}
                             />
-                            {
-                            formik.touched.username && formik.errors.username && 
-                            <div 
-                            className="error text-red-500 mb-1"
-                            >
-                            {formik.errors.username}
-                            </div>
-                            }
                             <label
                                 htmlFor="password" className="block text-black text-sm
                       font-bold mb-2"
@@ -138,16 +97,7 @@ function Login(){
                                 type="password" className="shadow appearance-none border rounded
                             w-full py-2 px-3 mb-2 text-black leading-tight focus:outline-none 
                             focus:shadow-outline" placeholder="Password" onChange={e => setPassword(e.target.value)}
-                            {...formik.getFieldProps('password')}
                             />
-                            {
-                            formik.touched.password && formik.errors.password && 
-                            <div 
-                            className="error text-red-500 mb-1"
-                            >
-                            {formik.errors.password}
-                            </div>
-                            }
                         </div>
                         <div className="flex items-center justify-between">
                             <button type="submit" className="bg-martinique hover:opacity-80 transition duration-300
