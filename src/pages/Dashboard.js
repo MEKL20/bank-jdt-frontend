@@ -5,10 +5,21 @@ import axios from "axios";
 function Dashboard() {
     const [customer, setCustomer] = useState([]);
     const [saving, setSaving] = useState([]);
-    const [reporting, setReporting] = useState([]);
+    const [reportings, setReportings] = useState([]);
 
     const navigate = useNavigate()
-    console.log(customer)
+
+    const formatDate = (dateString) => {
+        const options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+    }
 
     const handleLogout = () => {
         localStorage.clear()
@@ -45,7 +56,7 @@ function Dashboard() {
             });
     };
 
-    const fetchReporting = () => {
+    const fetchReportings = () => {
         axios.get('https://bank-root-api.herokuapp.com/reporting/' + localStorage.getItem("username"), {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
@@ -53,7 +64,7 @@ function Dashboard() {
         })
             .then((res) => {
                 console.log(res);
-                setReporting(res.data[0]);
+                setReportings(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -63,7 +74,7 @@ function Dashboard() {
     useEffect(() => {
         fetchCustomer();
         fetchSaving();
-        fetchReporting();
+        fetchReportings();
     }, []);
 
     return (
@@ -124,12 +135,17 @@ function Dashboard() {
                     </div>
                     <div className="container border m-1">
                         Last Activity <br/>
-                        Activity : {reporting.activity} <br/>
-                        Source : {reporting.source} <br/>
-                        Destination : {reporting.destination} <br/>
-                        Amount : {reporting.amount} <br/>
-                        Balance : {reporting.balance} <br/>
-                        Time : {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(reporting.created_at)}
+                        {reportings.slice(0,5).map((reporting) => (
+                            <p>
+                                <br/>
+                                Date : {formatDate(reporting.createdAt)}<br/>
+                                Activity : {reporting.activity} <br/>
+                                Source : {reporting.source} <br/>
+                                Destination : {reporting.destination} <br/>
+                                Amount : {reporting.amount} <br/>
+                                Balance : {reporting.balance} <br/>
+                            </p>
+                        ))}
                     </div>
                 </div>
             </div>
