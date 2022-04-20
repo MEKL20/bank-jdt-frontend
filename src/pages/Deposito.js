@@ -49,6 +49,9 @@ function Deposito() {
                 <a href="/transaction" className="font-semibold mb-1">
                 Transaction
                 </a>
+                <a href="/transactionhistory" className="font-semibold mb-1">
+                Transaction History
+                </a>
                 <a href="/deposito" className="font-semibold mb-1">
                 Deposito
                 </a>

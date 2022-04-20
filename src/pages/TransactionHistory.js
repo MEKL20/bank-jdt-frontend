@@ -1,7 +1,7 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom'
 
-function Transaction() {
+function TransactionHistory() {
     const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.clear()
@@ -44,36 +44,27 @@ function Transaction() {
             </h1>
             <div className="flex flex-col ml-10 mb-3">
                 <a href="/dashboard" className="font-semibold mb-1">
-                Dashboard
+                    Dashboard
                 </a>
                 <a href="/transaction" className="font-semibold mb-1">
-                Transaction
+                    Transaction
                 </a>
                 <a href="/transactionhistory" className="font-semibold mb-1">
-                Transaction History
+                    Transaction History
                 </a>
                 <a href="/deposito" className="font-semibold mb-1">
-                Deposito
+                    Deposito
                 </a>
             </div>
           </div>
           <div className="flex flex-wrap justify-center basis-2/3 border">
             <div className="border">
               <h1>
-                Transaction
+                Transaction History
               </h1>
             </div>
             <div className="container border m-1">
-                balance
-            </div>
-            <div className="container border m-1">
-                debit
-            </div>
-            <div className="container border m-1">
-                transfer
-            </div>
-            <div className="container border m-1">
-                withdraw
+                Activity
             </div>
           </div>
         </div>
@@ -89,5 +80,5 @@ function Transaction() {
     );
   }
   
-  export default Transaction;
+  export default TransactionHistory;
   
