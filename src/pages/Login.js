@@ -66,7 +66,8 @@ function Login(){
           .matches(/[a-z]/g, 'Should contain at least 1 lowercase')
           .matches(/[A-Z]/g, 'Should contain at least 1 uppercase')
           .matches(/[0-9]/g, 'Should contain at least 1 number')
-          .matches(/^\S*$/, 'Should not contain spaces')
+          .matches(/[!@#$%^&*]/g, 'Should contain at least 1 special character')
+          .matches(/^\S*$/g, 'Should not contain spaces')
         }),
 
         //handle submission
