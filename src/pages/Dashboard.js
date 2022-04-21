@@ -100,7 +100,7 @@ function Dashboard() {
             {/* End header */}
 
             <div className="container flex mx-auto my-32">
-                <div className="flex flex-col justify-center basis-1/3 border">
+                <div className="flex flex-col justify-center basis-1/3 bg-white shadow-md">
                     <h1 className="text-center">
                         {customer.name}
                     </h1>
@@ -123,17 +123,17 @@ function Dashboard() {
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center basis-2/3 border">
+                <div className="flex flex-wrap justify-center basis-2/3 bg-white shadow-md">
                     <div className="container m-1">
                         <center>
                             Dashboard
                         </center>
                     </div>
-                    <div className="container border m-1">
+                    <div className="container bg-white shadow-md border m-1">
                         Saving Account : {saving.accountSaving} <br/>
                         Balance : Rp {saving.balance}
                     </div>
-                    <div className="container border m-1">
+                    <div className="container bg-white shadow-md border m-1">
                         Last Activity <br/>
                         {reportings.slice(0,5).map((reporting) => (
                             <p>

@@ -83,7 +83,7 @@ function TransactionHistory() {
             {/* End header */}
 
             <div className="container flex mx-auto my-32">
-                <div className="flex flex-col justify-center basis-1/3 border">
+                <div className="flex flex-col justify-center basis-1/3 bg-white shadow-md">
                     <h1 className="text-center">
                         {customer.name}
                     </h1>
@@ -106,13 +106,13 @@ function TransactionHistory() {
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center basis-2/3 border">
+                <div className="flex flex-wrap justify-center basis-2/3 bg-white shadow-md">
                     <div className="container m-1">
                         <center>
                             Transaction History
                         </center>
                     </div>
-                    <div className="container border m-1">
+                    <div className="container bg-white shadow-md border m-1">
                         {reportings.map((reporting) => (
                             <p>
                                 <br/>

@@ -143,7 +143,7 @@ function Deposito() {
             {/* End header */}
 
             <div className="container flex mx-auto my-32">
-                <div className="flex flex-col justify-center basis-1/3 border">
+                <div className="flex flex-col justify-center basis-1/3 bg-white shadow-md">
                     <h1 className="text-center">
                         {customer.name}
                     </h1>
@@ -166,7 +166,7 @@ function Deposito() {
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center basis-2/3 border">
+                <div className="flex flex-wrap justify-center basis-2/3 bg-white shadow-md">
                     <div className="container m-1">
                         <center>Deposits List</center> <br/>
                         {deposits.slice(0,5).map((deposit, index) => (
@@ -182,22 +182,28 @@ function Deposito() {
                             </div>
                         ))}
                     </div>
-                    <div className="container border m-1">
+                    <div className="container bg-white shadow-md border m-1">
                         <center>add deposit</center>
                         <form onSubmit={addDeposit}>
-                            <input type="number" placeholder="Amount" name="balance" onChange={e => setAmount(e.target.value)}/><br/>
-                            <input type="radio" value="3" name="period" onChange={e => setPeriod(e.target.value)}/>Deposit 3 Month Profit 2% <br/>
-                            <input type="radio" value="6" name="period" onChange={e => setPeriod(e.target.value)}/>Deposit 6 Month Profit 4%<br/>
-                            <input type="radio" value="9" name="period" onChange={e => setPeriod(e.target.value)}/>Deposit 9 Month Profit 6%<br/>
-                            <input type="radio" value="12" name="period" onChange={e => setPeriod(e.target.value)}/>Deposit 12 Month Profit 8%<br/>
-                            <button type="submit">Submit</button>
+                            <input type="number" placeholder="Amount" name="balance" 
+                            className="border m-1 rounded" onChange={e => setAmount(e.target.value)}/><br/>
+                            <input type="radio" value="3" name="period" 
+                            className="m-1" onChange={e => setPeriod(e.target.value)}/>Deposit 3 Month Profit 2% <br/>
+                            <input type="radio" value="6" name="period" 
+                            className="m-1" onChange={e => setPeriod(e.target.value)}/>Deposit 6 Month Profit 4%<br/>
+                            <input type="radio" value="9" name="period" 
+                            className="m-1" onChange={e => setPeriod(e.target.value)}/>Deposit 9 Month Profit 6%<br/>
+                            <input type="radio" value="12" name="period" 
+                            className="m-1" onChange={e => setPeriod(e.target.value)}/>Deposit 12 Month Profit 8%<br/>
+                            <button type="submit" className="shadow-md bg-martinique text-white p-1 m-1 rounded">Submit</button>
                         </form>
                     </div>
-                    <div className="container border m-1">
+                    <div className="container bg-white shadow-md border m-1">
                         <center>withdraw deposit</center>
                         <form onSubmit={withdrawDeposit}>
-                            <input type="number" placeholder="Account Deposit" name="account_deposit" onChange={e => setAccountDeposit(e.target.value)}/><br/>
-                            <button type="submit">Submit</button>
+                            <input type="number" placeholder="Account Deposit" name="account_deposit" 
+                            className="border m-1 rounded" onChange={e => setAccountDeposit(e.target.value)}/><br/>
+                            <button type="submit" className="shadow-md bg-martinique text-white p-1 m-1 rounded">Submit</button>
                         </form>
                     </div>
                 </div>

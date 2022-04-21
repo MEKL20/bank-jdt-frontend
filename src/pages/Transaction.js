@@ -143,7 +143,7 @@ function Transaction() {
         {/* End header */}
 
         <div className="container flex mx-auto my-32">
-          <div className="flex flex-col justify-center basis-1/3 border">
+          <div className="flex flex-col justify-center basis-1/3 bg-white shadow-md">
             <h1 className="text-center">
               {customer.name}
             </h1>
@@ -166,32 +166,36 @@ function Transaction() {
                 </a>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center basis-2/3 border">
+          <div className="flex flex-wrap justify-center basis-2/3 bg-white shadow-md">
             <div className="container m-1">
               <center>
                 Transaction
               </center>
             </div>
-            <div className="container border m-1">
-                TopUp <br/>
+            <div className="container bg-white shadow-md border m-1">
+                <center>Top Up</center>
                 <form onSubmit={topup}>
-                  <input type="number" placeholder="Amount" name="balance" onChange={e => setBalance(e.target.value)}/><br/>
-                  <button type="submit">Submit</button>
+                  <input type="number" placeholder="Amount" name="balance" 
+                  className="border m-1 rounded" onChange={e => setBalance(e.target.value)}/><br/>
+                  <button type="submit" className="shadow-md bg-martinique text-white p-1 m-1 rounded">Submit</button>
                 </form>
             </div>
-            <div className="container border m-1">
-                transfer<br/>
+            <div className="container bg-white shadow-md border m-1">
+                <center>Transfer</center>
                 <form onSubmit={transfer}>
-                  <input type="number" placeholder="Account Destination" name="destination" onChange={e => setDestination(e.target.value)}/><br/>
-                  <input type="number" placeholder="Amount" name="balance" onChange={e => setBalance(e.target.value)}/><br/>
-                  <button type="submit">Submit</button>
+                  <input type="number" placeholder="Account Destination" name="destination" 
+                  className="border m-1 rounded" onChange={e => setDestination(e.target.value)}/><br/>
+                  <input type="number" placeholder="Amount" name="balance" 
+                  className="border m-1 rounded" onChange={e => setBalance(e.target.value)}/><br/>
+                  <button type="submit" className="shadow-md bg-martinique text-white p-1 m-1 rounded">Submit</button>
                 </form>
             </div>
-            <div className="container border m-1">
-                withdraw <br/>
+            <div className="container bg-white shadow-md border m-1">
+                <center>Withdraw</center>
                 <form onSubmit={withdraw}>
-                  <input type="number" placeholder="Amount" name="balance" onChange={e => setBalance(e.target.value)}/><br/>
-                  <button type="submit">Submit</button>
+                  <input type="number" placeholder="Amount" name="balance" 
+                  className="border m-1 rounded" onChange={e => setBalance(e.target.value)}/><br/>
+                  <button type="submit" className="shadow-md bg-martinique text-white p-1 m-1 rounded">Submit</button>
                 </form>
             </div>
           </div>
