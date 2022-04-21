@@ -162,12 +162,12 @@ function Deposito() {
                             Transaction History
                         </a>
                         <a href="/deposito" className="font-semibold mb-1">
-                            Deposito
+                            Deposit
                         </a>
                     </div>
                 </div>
                 <div className="flex flex-wrap justify-center basis-2/3 border">
-                    <div className="container border m-1">
+                    <div className="container m-1">
                         <center>Deposits List</center> <br/>
                         {deposits.slice(0,5).map((deposit, index) => (
                             <div key={index}>

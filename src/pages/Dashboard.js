@@ -119,15 +119,15 @@ function Dashboard() {
                             Transaction History
                         </a>
                         <a href="/deposito" className="font-semibold mb-1">
-                            Deposito
+                            Deposit
                         </a>
                     </div>
                 </div>
                 <div className="flex flex-wrap justify-center basis-2/3 border">
-                    <div className="border">
-                        <h1>
+                    <div className="container m-1">
+                        <center>
                             Dashboard
-                        </h1>
+                        </center>
                     </div>
                     <div className="container border m-1">
                         Saving Account : {saving.accountSaving} <br/>
