@@ -25,7 +25,7 @@ function Deposito() {
             minute: "2-digit",
             second: "2-digit"
         }
-        return new Date(dateString).toLocaleDateString(undefined, options)
+        return new Date(dateString).toUTCString(undefined, options)
     }
 
     const fetchCustomer = () => {

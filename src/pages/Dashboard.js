@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import axios from "axios";
+import moment from "moment";
 
 function Dashboard() {
     const [customer, setCustomer] = useState([]);
@@ -8,18 +9,6 @@ function Dashboard() {
     const [reportings, setReportings] = useState([]);
 
     const navigate = useNavigate()
-
-    const formatDate = (dateString) => {
-        const options = {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        }
-        return new Date(dateString).toLocaleDateString(undefined, options)
-    }
 
     const handleLogout = () => {
         localStorage.clear()
@@ -138,7 +127,7 @@ function Dashboard() {
                         {reportings.slice(0,5).map((reporting) => (
                             <p>
                                 <br/>
-                                Date : {formatDate(reporting.createdAt)}<br/>
+                                Date : {moment.parseZone(reporting.createdAt).calendar()}<br/>
                                 Activity : {reporting.activity} <br/>
                                 Source : {reporting.source} <br/>
                                 Destination : {reporting.destination} <br/>
